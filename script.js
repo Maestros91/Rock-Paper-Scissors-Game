@@ -2,70 +2,73 @@ const gameArray = ['rock', 'paper', 'scissors'];
 let playerSelection = "";
 let playerScore = 0;
 let computerScore = 0;
+let input = ""; 
 
-// Αφαιρούμε την παγκόσμια μεταβλητή input και την ορίζουμε μόνο όπου χρειάζεται
-
-function isValid(choice) {
-    // Επιστρέφει true μόνο αν η επιλογή είναι έγκυρη
-    return choice !== null && choice !== "" && gameArray.includes(choice.toLowerCase());
-}
-
-function getValidInput(msg) {
-    let val = prompt(msg);
-    
-    // Όσο η είσοδος ΔΕΝ είναι έγκυρη
-    while (!isValid(val)) {
-        if (val === null) {
-            val = prompt("You can't escape! 😈\nPlease enter Rock, Paper, or Scissors:");
+function isCancelled() {
+    if (input === null || input === "" || !gameArray.includes(input.toLowerCase())) { 
+        if (input === null) {
+            input = prompt('You can not escape from me.. \nChoose wisely "Rock" 🤟🏼, "Paper" 🧻 or "Scissors" ✂️!');
         } else {
-            val = prompt("Wrong spelling! ✍️\nType Rock, Paper, or Scissors:");
+            input = prompt('I am sure you know how to write three easy words.. \nIt is "Rock" 🤟🏼, "Paper" 🧻 or "Scissors" ✂️!');
         }
+        return false; 
+    } else {
+        playerSelection = input.toLowerCase();
+        return true;
     }
-    return val.toLowerCase();
 }
-
 function playRound(computer, player) {
-    if (computer === player) {
-        alert("It's a tie! 🤝 We both chose " + computer);
-        let newInput = getValidInput("Quick! Tie-breaker! Choose again:");
+    const comp = computer.toLowerCase();
+    const pl = player.toLowerCase();
+
+    if (comp === pl) {
+        alert("It's a tie! 🤝 We both chose " + computer + ". Let's replay this round.");
+        input = prompt("Quick! Choose again: Rock 🤟🏼, Paper 🧻, or Scissors ✂️");
+        while (isCancelled() === false) { }
         let newComputer = gameArray[Math.floor(Math.random() * gameArray.length)];
-        return playRound(newComputer, newInput);
+        return playRound(newComputer, playerSelection);
     }
 
     let roundMessage = "";
-    if ((player === "paper" && computer === "rock") || 
-        (player === "scissors" && computer === "paper") || 
-        (player === "rock" && computer === "scissors")) {
+    if (
+        (pl === "paper" && comp === "rock") ||
+        (pl === "scissors" && comp === "paper") ||
+        (pl === "rock" && comp === "scissors")
+    ) {
         playerScore++;
-        roundMessage = "✅ Round Win! " + player + " beats " + computer;
+        roundMessage = "✅ Damn!! You took the round.. " + pl + " wins " + comp;
     } else {
         computerScore++;
-        roundMessage = "❌ Round Loss! " + computer + " beats " + player;
-    }
-    
+        roundMessage = "❌ Oooh Yeah.. " + comp + " beats " + pl + ". Got you!";
+    } 
     console.log(roundMessage);
-    alert(roundMessage + "\nScore: " + playerScore + " - " + computerScore);
+    alert(roundMessage + "\nScore: Player " + playerScore + " - Computer " + computerScore);
 }
 
 function game() {
+
     playerScore = 0;
     computerScore = 0;
-    
-    console.log("%c--- GAME STARTED ---", "color: green; font-weight: bold;");
+
+    console.log("%c--- NEW GAME STARTED ---", "color: green; font-weight: bold; font-size: 14px;");
 
     while (playerScore < 5 && computerScore < 5) {
-        let currentInput = getValidInput("Score: " + playerScore + "-" + computerScore + "\nChoose your weapon: Rock, Paper, or Scissors!");
+        let tempInput = prompt("Current Score: " + playerScore + "-" + computerScore + "\nChoose your weapon:\nRock 🤟🏼, Paper 🧻 or Scissors ✂️!");
+        if (tempInput === null && playerScore === 0 && computerScore === 0) {
+            tempInput = prompt("The Arena is ready! Please type Rock, Paper or Scissors to begin:");
+        }
+        input = tempInput;
+        while (isCancelled() === false) { }
         
         let computerPlay = gameArray[Math.floor(Math.random() * gameArray.length)];
-        playRound(computerPlay, currentInput);
+        playRound(computerPlay, playerSelection);
     }
 
     if (playerScore === 5) {
-        alert("🏆 CHAMPION! Final Score: " + playerScore + "-" + computerScore);
+        alert("🏆 YOU WON THE SET: " + playerScore + "-" + computerScore);
     } else {
-        alert("💀 DEFEAT! Final Score: " + computerScore + "-" + playerScore);
+        alert("💀 YOU LOST THE SET: " + computerScore + "-" + playerScore);
     }
+    console.log("%cGame finished. Type game() to play again!", "color: orange; font-style: italic;");
 }
-
-// Εκτέλεση
 game();
