@@ -1,8 +1,6 @@
 const gameArray = ['rock', 'paper', 'scissors'];
 let playerSelection = "";
-let playerScore = 0;
-let computerScore = 0;
- let input = "";
+let input = ""; 
 
 function isCancelled() {
     if (input === null || input === "" || !gameArray.includes(input.toLowerCase())) { 
@@ -17,6 +15,9 @@ function isCancelled() {
         return true;
     }
 }
+
+let playerScore = 0;
+let computerScore = 0;
 
 function playRound(computer, player) {
     const comp = computer.toLowerCase();
@@ -49,15 +50,15 @@ function playRound(computer, player) {
     alert(roundMessage + "\nScore: Player " + playerScore + " - Computer " + computerScore);
 }
 
+
 function game() {
-    
     playerScore = 0;
     computerScore = 0;
     
-    console.log("%c--- NEW GAME STARTED ---", "color: green; font-weight: bold; font-size: 14px;");
+    console.log("%c--- NEW GAME STARTED ---", "color: blue; font-weight: bold;");
 
     while (playerScore < 5 && computerScore < 5) {
-        input = prompt("New Game! First to 5 wins.\nCurrent Score: " + playerScore + "-" + computerScore + "\nChoose your weapon:\nRock 🤟🏼, Paper 🧻 or Scissors ✂️!");
+        input = prompt("New Set! First to 5 wins.\nCurrent Score: " + playerScore + "-" + computerScore + "\nChoose your weapon:\nRock 🤟🏼, Paper 🧻 or Scissors ✂️!");
 
         while (isCancelled() === false) { }
         
@@ -68,9 +69,9 @@ function game() {
     if (playerScore === 5) {
         alert("🏆 YOU WON THE SET: " + playerScore + "-" + computerScore);
     } else {
-        alert("💀 YOU LOST THE SET: " + computerScore + "-" + playerScore);
+        alert("💀 YOU LOST THE SET: " + playerScore + "-" + computerScore);
     }
     
-    console.log("%cGame finished. Type game() to play again from 0-0.", "color: orange; font-style: italic;");
+    console.log("Game finished. Type game() to play again from 0-0.");
 }
 game();
