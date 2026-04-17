@@ -4,7 +4,29 @@ let playerScore = 0;
 let computerScore = 0;
 let input = ""; 
 
-game();
+function game() {
+    playerScore = 0;
+    computerScore = 0;
+    
+    console.log("%c--- NEW GAME STARTED ---", "color: green; font-weight: bold;");
+
+    while (playerScore < 5 && computerScore < 5) {
+        input = prompt("New Game! First to 5 wins.\nCurrent Score: " + playerScore + "-" + computerScore + "\nChoose your weapon:" + '"\nRock" 🤟🏼, "Paper" 🧻 or "Scissors" ✂️!');
+
+        while (isCancelled() === false) { }
+        
+        let computerPlay = gameArray[Math.floor(Math.random() * gameArray.length)];
+        playRound(computerPlay, playerSelection);
+    }
+
+    if (playerScore === 5) {
+        alert("🏆 YOU WON THE SET: " + playerScore + "-" + computerScore);
+    } else {
+        alert("💀 YOU LOST THE SET: " + playerScore + "-" + computerScore);
+    }
+    
+    console.log("Game finished. Type game() to play again from 0-0.");
+}
 
 function isCancelled() {
     if (input === null || input === "" || !gameArray.includes(input.toLowerCase())) { 
@@ -46,27 +68,7 @@ function playRound(computer, player) {
     alert(roundMessage + "\nScore: Player " + playerScore + " - Computer " + computerScore);
 }
 
-function game() {
-    playerScore = 0;
-    computerScore = 0;
-    
-    console.log("%c--- NEW GAME STARTED ---", "color: green; font-weight: bold;");
+game();
 
-    while (playerScore < 5 && computerScore < 5) {
-        input = prompt("New Game! First to 5 wins.\nCurrent Score: " + playerScore + "-" + computerScore + "\nChoose your weapon:" + '"\nRock" 🤟🏼, "Paper" 🧻 or "Scissors" ✂️!');
 
-        while (isCancelled() === false) { }
-        
-        let computerPlay = gameArray[Math.floor(Math.random() * gameArray.length)];
-        playRound(computerPlay, playerSelection);
-    }
-
-    if (playerScore === 5) {
-        alert("🏆 YOU WON THE SET: " + playerScore + "-" + computerScore);
-    } else {
-        alert("💀 YOU LOST THE SET: " + playerScore + "-" + computerScore);
-    }
-    
-    console.log("Game finished. Type game() to play again from 0-0.");
-}
 
