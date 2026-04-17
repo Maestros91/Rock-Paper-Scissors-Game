@@ -78,8 +78,6 @@ function game() {
     console.log("%cGame finished. Type game() to play again from 0-0.", "color: orange; font-style: italic;");
 }
 
-// Εκκίνηση
-game();
 
 setTimeout(() => {
     game();
