@@ -1,7 +1,6 @@
 const gameArray = ['rock', 'paper', 'scissors'];
 let playerSelection = "";
-let playerScore = 0;
-let computerScore = 0;
+let input = ""; 
 
 function isCancelled(currentInput) {
     if (currentInput === null || currentInput === "" || !gameArray.includes(currentInput.toLowerCase())) { 
@@ -9,6 +8,9 @@ function isCancelled(currentInput) {
     }
     return true;
 }
+
+let playerScore = 0;
+let computerScore = 0;
 
 function playRound(computer, player) {
     const comp = computer.toLowerCase();
@@ -43,15 +45,33 @@ function playRound(computer, player) {
     alert(roundMessage + "\nScore: Player " + playerScore + " - Computer " + computerScore);
 }
 
+
 function game() {
     playerScore = 0;
     computerScore = 0;
+<<<<<<< Updated upstream
     let input = ""; // Τοπική μεταβλητή
 
     console.log("%c--- NEW GAME STARTED ---", "color: green; font-weight: bold;");
+=======
+    
+    console.log("%c--- NEW GAME STARTED ---", "color: green; font-weight: bold;");
+
+    // Χρησιμοποιούμε alert για να "ξυπνήσουμε" τον browser
+    alert("Welcome to the Arena! 🏟️\nLet the game begin!");
+>>>>>>> Stashed changes
 
     while (playerScore < 5 && computerScore < 5) {
-        input = prompt("New Game! First to 5 wins.\nCurrent Score: " + playerScore + "-" + computerScore + "\nChoose your weapon:\nRock 🤟🏼, Paper 🧻 or Scissors ✂️!");
+        // Παίρνουμε την πρώτη τιμή
+        let tempInput = prompt("Current Score: " + playerScore + "-" + computerScore + "\nChoose: Rock, Paper, or Scissors!");
+
+        // Αν το tempInput είναι null επειδή ο browser "βιάστηκε", 
+        // του δίνουμε μια δεύτερη ευκαιρία αμέσως πριν πάμε στην isCancelled
+        if (tempInput === null) {
+            tempInput = prompt("Don't leave yet! Please choose your weapon:");
+        }
+
+        input = tempInput; // Τώρα δίνουμε την τιμή στην παγκόσμια input
 
         // Έλεγχος εγκυρότητας απευθείας εδώ για να μην μπερδεύεται το global input
         while (!isCancelled(input)) {
@@ -70,8 +90,9 @@ function game() {
     if (playerScore === 5) {
         alert("🏆 YOU WON THE SET: " + playerScore + "-" + computerScore);
     } else {
-        alert("💀 YOU LOST THE SET: " + computerScore + "-" + playerScore);
+        alert("💀 YOU LOST THE SET: " + playerScore + "-" + computerScore);
     }
+<<<<<<< Updated upstream
 }
 
 // Η "μαγική" λύση για το New Tab: 
@@ -79,3 +100,9 @@ function game() {
 setTimeout(() => {
     game();
 }, 500);
+=======
+    
+    console.log("Game finished. Type game() to play again from 0-0.");
+}
+game();
+>>>>>>> Stashed changes
