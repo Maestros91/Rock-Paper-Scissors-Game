@@ -18,6 +18,8 @@ function isCancelled() {
     }
 }
 
+game();
+
 function playRound(computer, player) {
     if (computer === player) {
         alert("It's a tie! 🤝 We both chose " + computer + ". Let's replay this round.");
@@ -66,4 +68,3 @@ function game() {
     console.log("Game finished. Type game() to play again from 0-0.");
 }
 
-game();
