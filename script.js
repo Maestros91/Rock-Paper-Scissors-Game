@@ -4,6 +4,8 @@ let playerScore = 0;
 let computerScore = 0;
 let input = ""; 
 
+game();
+
 function isCancelled() {
     if (input === null || input === "" || !gameArray.includes(input.toLowerCase())) { 
         if (input === null) {
@@ -18,7 +20,7 @@ function isCancelled() {
     }
 }
 
-game();
+
 
 function playRound(computer, player) {
     if (computer === player) {
