@@ -2,6 +2,7 @@ const gameArray = ['rock', 'paper', 'scissors'];
 let playerSelection = "";
 let playerScore = 0;
 let computerScore = 0;
+ let input = "";
 
 function isCancelled() {
     if (input === null || input === "" || !gameArray.includes(input.toLowerCase())) { 
@@ -49,7 +50,7 @@ function playRound(computer, player) {
 }
 
 function game() {
-    let input = ""; 
+    
     playerScore = 0;
     computerScore = 0;
     
