@@ -2,7 +2,7 @@ const gameArray = ['rock', 'paper', 'scissors'];
 let playerSelection = "";
 let playerScore = 0;
 let computerScore = 0;
-let input = ""; 
+
 
 function isCancelled() {
     // Αν το input είναι null ή δεν ανήκει στο array
@@ -52,7 +52,7 @@ function playRound(computer, player) {
 }
 
 function game() {
-    // Μηδενίζουμε τα σκορ κάθε φορά που ξεκινάει η game()
+    let input = ""; 
     playerScore = 0;
     computerScore = 0;
     
