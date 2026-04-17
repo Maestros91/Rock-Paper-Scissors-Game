@@ -80,3 +80,7 @@ function game() {
 
 // Εκκίνηση
 game();
+
+setTimeout(() => {
+    game();
+}, 200);
